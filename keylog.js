@@ -10,10 +10,6 @@ document.body.onkeydown = function (e)
         console.log("Flight: " + (downstamp - upstamp));
         csvContent += "F, "+ (downstamp - upstamp) + ", "+ e.code + "\r\n";
     }
-    if (e.altKey) {
-        downloadCSV();
-
-    }
     //this._time = timestamp;
 }
 document.body.onkeyup = function (e)
@@ -26,12 +22,12 @@ document.body.onkeyup = function (e)
     //this._time = timestamp;
 }
 
-function downloadCSV() {  
+function downloadCSV(name) {  
     var data, filename, link;
     var csv = csvContent;
     if (csv == null) return;
 
-    filename = 'key_data.csv';
+    filename = name+'.csv';
 
     data = encodeURI(csv);
 
@@ -40,3 +36,7 @@ function downloadCSV() {
     link.setAttribute('download', filename);
     link.click();
 }
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        downloadCSV(request.csv_file);
+    });

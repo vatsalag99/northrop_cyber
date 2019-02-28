@@ -2,7 +2,7 @@
     "name": "KeystrokeDataCollector",
     "version": "1.0.0",
     "description": "Generates Keystroke Data",
-    "permissions": ["activeTab"],
+    "permissions": ["activeTab", "storage","declarativeContent"],
     "background": {
         "scripts": ["background.js"],
         "persistent": true
@@ -10,8 +10,13 @@
     "manifest_version": 2,
     "content_scripts": [
         {
-            "matches": ["*://*./*"],
+            "matches": ["<all_urls>"],
+            "all_frames": true,
             "js": ["keylog.js"]
         }
-    ]
+    ],
+     "browser_action": {
+         "default_popup": "popup.html",
+         "default_icon": "icon.png"
+     }
 }
