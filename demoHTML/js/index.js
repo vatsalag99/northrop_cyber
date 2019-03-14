@@ -14,8 +14,14 @@ document.getElementById('password').onkeydown = function(e) {
     ds = new_downstamp;
     if(e.keyCode == 13) {
         document.getElementById('password').value = '';
-        $.post("vjpi/", {data: line}, function(result){
-            $("user").html(result);
+        $.ajax({
+            url:"vpjpi/",
+            type:'POST',
+            dataType: "jsonp",
+            data:"data="+line,
+            success: function(data) {
+                $("user").html(result);
+            }
         });
     }
 };
