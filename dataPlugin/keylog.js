@@ -1,5 +1,5 @@
-var downstamp = this._time;
 var upstamp = this._time;
+var downstamp = this._time;
 var csvLine = "";
 let csvContent = "data:text/csv;charset=utf-8,";
 
