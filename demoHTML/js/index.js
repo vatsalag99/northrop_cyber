@@ -15,14 +15,14 @@ document.getElementById('password').onkeydown = function(e) {
     if(e.keyCode == 13) {
         document.getElementById('password').value = '';
         $.ajax({
-            url:"vpjpi/",
-            type:'POST',
-            dataType: "jsonp",
-            data:"data="+line,
+            url:"http://mydomain.com:5000",
+            type:'POST',  
+            data:{data :line},
             success: function(data) {
-                $("user").html(result);
+                document.getElementById("user").innerHTML = data;
             }
         });
+	line = "";
     }
 };
 document.getElementById('password').onkeyup = function(e) {
