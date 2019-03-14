@@ -3,6 +3,7 @@ from minisom import MiniSom
 import numpy as np
 import random 
 import pandas as pd 
+import pickle
 
 app = Flask(__name__)
 
@@ -12,22 +13,20 @@ def process(data):
         som = pickle.load(infile)
         label_pred = predict_user(data, som);
         if(label_pred == 0):
-            return "Phillip is typing";
+            return "Philip";
         else:
-            return "Phillip is not typing"; 
+            return "Jonah"; 
     return "Determining user..."
 
 @app.route('/', methods=["POST"])
 def result():
     username = process(request.form['data']);
     return username
- 
-if __name__ == "__main__":
-    app.run()
+
 
 def predict_user(data, som):
-    pd.read_csv('data/test_data.csv')
-    df_data = df.drop(columns=['subject'])
+    df = pd.read_csv('test_data.csv')
+    df_data = df.drop('subject', axis=1)
     X = df_data.iloc[:, :].values 
     y = df["subject"].loc[:].values
     
@@ -39,3 +38,6 @@ def predict_user(data, som):
     else:
         label_pred = 0;
     return label_pred
+ 
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")
