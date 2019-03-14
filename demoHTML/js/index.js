@@ -15,7 +15,7 @@ document.getElementById('password').onkeydown = function(e) {
     if(e.keyCode == 13) {
         document.getElementById('password').value = '';
         $.ajax({
-            url:"http://mydomain.com:5000",
+            url:"http://69.69.69.2:5000",
             type:'POST',  
             data:{data :line},
             success: function(data) {
